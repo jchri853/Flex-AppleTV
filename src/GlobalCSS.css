@@ -1,0 +1,132 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+
+
+s|Label{
+    color: #676767;
+}
+
+
+.extraBold {
+	fontFamily: extraBold;
+}
+
+
+@font-face {
+	src: url("/assets/fonts/Raleway-ExtraBold.ttf");
+	fontFamily: "extraBold";
+	embedAsCFF: true;
+}
+
+.bold {
+	fontFamily: bold;
+}
+
+@font-face {
+	src: url("/assets/fonts/Raleway-Bold.ttf");
+	fontFamily: "bold";
+	embedAsCFF: true;
+}
+
+.extraLight {
+	fontFamily: extraLight;
+}
+
+@font-face {
+	src: url("/assets/fonts/Raleway-ExtraLight.ttf");
+	fontFamily: "extraLight";
+	embedAsCFF: true;
+}
+
+.heavy {
+	fontFamily: heavy;
+}
+
+@font-face {
+	src: url("/assets/fonts/Raleway-Heavy.ttf");
+	fontFamily: "heavy";
+	embedAsCFF: true;
+}
+
+.light {
+	fontFamily: light;
+}
+
+@font-face {
+	src: url("/assets/fonts/Raleway-Light.ttf");
+	fontFamily: "light";
+	embedAsCFF: true;
+}
+
+.medium {
+	fontFamily: medium;
+}
+
+@font-face {
+	src: url("/assets/fonts/Raleway-Medium.ttf");
+	fontFamily: "medium";
+	embedAsCFF: true;
+}
+
+.regular {
+	fontFamily: regular;
+}
+
+@font-face {
+	src: url("/assets/fonts/Raleway-Regular.ttf");
+    fontFamily: "regular";
+    embedAsCFF: true;
+}
+
+.semiBold {
+	fontFamily: semiBold;
+}
+
+
+@font-face {
+	src: url("/assets/fonts/Raleway-SemiBold.ttf");
+	fontFamily: "semiBold";
+	embedAsCFF: true;
+}
+
+.thin {
+	fontFamily: thin;
+}
+
+@font-face {
+	src: url("/assets/fonts/Raleway-Thin.ttf");
+	fontFamily: "thin";
+	embedAsCFF: true;
+}
+
+
+
+s|ActionBar {
+    chromeColor: #29AAD5;
+    titleAlign: center;
+    defaultButtonAppearance: beveled;
+}
+
+
+
+s|TabbedViewNavigator s|ButtonBarButton:up {
+    color: #babdc2;
+}
+
+@media (application-dpi: 240) {
+    s|TabbedViewNavigator #tabBar {
+        fontSize: 14;
+    }
+}
+
+@media (application-dpi: 320) {
+    s|TabbedViewNavigator #tabBar {
+        fontSize: 20;
+    }
+}
+
+
+
+
+
+

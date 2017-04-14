@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:context="context.*"
+			   applicationDPI="160" click="application1_clickHandler(event)"
+			   creationComplete="view1_creationCompleteHandler(event)"
+			   keyDown="handleKeys(event)"
+			   mouseDown="application1_mouseDownHandler(event)" 	
+			   xmlns:view="views.*">
+		<!--preloader="CustomSplashScreen"
+	  gestureSwipe="swipeHandler(event)"-->
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+            private var lds:LocalDataSingleton=LocalDataSingleton.getInstance(); 
+
+			public static const TOUCH_POINT:String = "touchPoint";
+           
+					
+					/*TransformGestureEvent.GESTURE_DIRECTIONAL_TAP - A 
+					new UIDeviceFamily gesture has been introduced to support directional tap from the Siri Remote.
+					This helps in navigating through a collection of items one-by-one. Direction of the tap can be 
+					judged by referring to the offsetX and offsetY values of the event object similar to a SwipeEvent.
+					TransformGestureEvent.GESTURE_SWIPE - Swipe Events are now supported on Apple TV similar to other
+					platforms. However, the values of stageX and stageY properties remain fixed as received from the 
+					native operating system, which is the center of the screen. AIR developers can read a new velocity 
+					property in Swipe Events to manage the fast movements based on the strength of swipe.
+					Mouse Events and Touch Events - Mouse Events on Apple TV are generated only on Siri Remote Click,
+					and are thus limited to CLICK, MOUSE_UP, and MOUSE_DOWN. Touch Events are generated on Siri Remote
+					Touch when Multitouch.inputMode is set to TOUCH_POINT.
+					Menu and Play/Pause Buttons */
+			
+			
+					import mx.events.FlexEvent;
+					
+					import spark.events.IndexChangeEvent;
+
+					
+					protected function view1_creationCompleteHandler(event:FlexEvent):void {
+						addEventListener(TransformGestureEvent.GESTURE_SWIPE , swipeHandler );
+						addEventListener(TransformGestureEvent.GESTURE_DIRECTIONAL_TAP , superSwipieHandler );
+						 
+
+  
+					}
+					
+					protected function swipeHandler(event:TransformGestureEvent):void {
+						
+							switch(event.offsetX)	{
+								case 1:	{
+									
+									if(list.selectedIndex < list.dataProvider.length){
+									list.selectedIndex ++;
+									}
+								
+									// swiped right
+									break;
+								}
+								case -1: {
+									
+									if(list.selectedIndex > 0){
+										list.selectedIndex --;
+							//		}
+									// swiped left
+								//	this.navigator.pushView(GestureViewChangeView2);
+									break;
+								}
+							}
+							switch(event.offsetY) {
+								case 1: {
+									
+								//	list.focusEnabled = true;
+									// swiped down
+									break;
+								}
+								case -1: {
+									// swiped up
+									break;
+								}
+							}
+							}
+					}
+			
+					private function handleKeys(event:KeyboardEvent):void {
+						//	Play/Pause	0x01000020	KEYNAME_PLAYPAUSE="PlayPause"
+											
+						label.text = event.keyCode.toString();
+						switch(event.keyCode) {
+							case(1677234): //KEYNAME_MENU="Menu     
+								label.text = "hit the menu button";
+								break;
+						}
+						
+					}
+
+			
+			
+					
+			
+            
+            
+			protected function list_changeHandler(event:IndexChangeEvent):void {
+				
+				switch(event.target.selectedItem.title) {
+					
+					
+					case "Home": {
+						currentState="MainView";
+						break;
+					}
+						
+					case "FirstView":{
+						currentState="SecondView";
+						break;
+					}
+						
+				/*	case "SecondView":{
+						currentState="SecondView";
+						break;
+					}*/
+						
+					case "ThirdView":{
+						currentState="SecondView";
+						break;
+					}
+						
+					}
+			     
+				
+									
+			}
+			
+			protected function application1_mouseDownHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				label.text = "mouse down handler"				
+
+				
+			}
+			
+			protected function application1_clickHandler(event:MouseEvent):void
+			{
+					label.text = "CLick handler activated"				
+			}
+			
+			protected function superSwipieHandler(event:TransformGestureEvent):void
+			{
+				
+				
+				label.text = event.velocity.toString();
+				switch(event.offsetX)	{
+					case 1:	{
+						
+						if(list.selectedIndex < list.dataProvider.length){
+							list.selectedIndex ++;
+						}
+						
+						// swiped right
+						break;
+					}
+					case -1: {
+						
+						if(list.selectedIndex > 0){
+							list.selectedIndex --;
+							//		}
+							// swiped left
+							//	this.navigator.pushView(GestureViewChangeView2);
+							break;
+						}
+					}
+						switch(event.offsetY) {
+							case 1: {
+								
+								//	list.focusEnabled = true;
+								// swiped down
+								break;
+							}
+							case -1: {
+								// swiped up
+								break;
+							}
+						}
+				}
+			}
+			
+		]]>
+    </fx:Script>
+ 
+    <fx:Declarations>
+        <context:MobileContext contextView="{this}"/>
+    </fx:Declarations>
+	
+	
+	<s:states>
+		<s:State name="MainView"/>
+		<s:State name="SecondView"/>		
+	</s:states>
+	
+	
+
+
+   <fx:Style source="GlobalCSS.css"/>
+	
+	
+	<s:VGroup width="100%" height="100%">
+		
+		
+		<s:Label id="label" fontSize="40"></s:Label>
+		
+	<s:List id="list" width="100%" height="50" change="list_changeHandler(event)" color="0x676767"
+			contentBackgroundColor="0xfffffff" horizontalCenter="0"
+			itemRenderer="renderers.MenuRenderer" labelField="name" selectedIndex="0">
+		<s:layout> 
+		<s:HorizontalLayout gap="40" horizontalAlign="center"/> 
+		</s:layout> 
+				
+			<s:dataProvider>
+				<s:ArrayCollection>
+					<fx:Object title="Home"/>		
+					<fx:Object title="FirstView"/>
+					<fx:Object title="SecondView"/>
+					<fx:Object title="ThirdView"/>
+				</s:ArrayCollection>
+			</s:dataProvider>
+	</s:List>
+
+	
+		<view:HomeView includeIn="MainView"   height="100%"  width="100%"/>       
+		<view:ComponentOne includeIn="SecondView"   height="100%"  width="100%"/>       
+	
+	</s:VGroup>
+
+</s:Application>

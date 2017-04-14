@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<application xmlns="http://ns.adobe.com/air/application/25.0">
+
+
+	<!-- A universally unique application identifier. Must be unique across 
+		all AIR applications. Using a reverse DNS-style name as the id is recommended. 
+		(Eg. com.example.ExampleApplication.) Required. -->
+	<id>com.tlc.Trinity</id>
+
+	<!-- Used as the filename for the application. Required. -->
+	<filename>AIRTV</filename>
+
+	<!-- The name that is displayed in the AIR application installer. May have 
+		multiple values for each language. See samples or xsd schema file. Optional. -->
+	<name>AIRTV</name>
+
+	<!-- A string value of the format <0-999>.<0-999>.<0-999> that represents 
+		application version which can be used to check for application upgrade. Values 
+		can also be 1-part or 2-part. It is not necessary to have a 3-part value. 
+		An updated version of application must have a versionNumber value higher 
+		than the previous version. Required for namespace >= 2.5 . -->
+	<versionNumber>1.0.0</versionNumber>
+
+
+	<!-- Settings for the application's initial window. Required. -->
+	<initialWindow>
+		<!-- The main SWF or HTML file of the application. Required. -->
+		<!-- Note: In Flash Builder, the SWF reference is set automatically. -->
+		<content>[This value will be overwritten by Flash Builder in the
+			output app.xml]</content>
+
+		<!-- The aspect ratio of the app ("portrait" or "landscape" or "any"). 
+			Optional. Mobile only. Default is the natural orientation of the device -->
+
+		<aspectRatio>landscape</aspectRatio>
+
+		<autoOrients>false</autoOrients>
+	</initialWindow>
+
+	<!-- The render mode for the app (either auto, cpu, gpu, or direct). Optional. 
+		Default auto -->
+
+	<!-- <renderMode></renderMode> -->
+
+
+	<!-- The icon the system uses for the application. For at least one resolution, 
+		specify the path to a PNG file included in the AIR package. Optional. -->
+	<!-- <icon> <image29x29>/assets/icons/AppIcon29x29.png</image29x29> <image50x50>/assets/icons/AppIcon50x50.png</image50x50> 
+		<image57x57>/assets/icons/AppIcon57x57.png</image57x57> <image58x58>/assets/icons/AppIcon29x29@2x.png</image58x58> 
+		<image72x72>/assets/icons/AppIcon72x72.png</image72x72> <image75x75>/assets/icons/AppIcon75x75.png</image75x75> 
+		<image76x76>/assets/icons/AppIcon76x76.png</image76x76> <image87x87>/assets/icons/AppIcon87x87.png</image87x87> 
+		<image120x120>/assets/icons/AppIcon60x60@2x.png</image120x120> <image152x152>/assets/icons/AppIcon76x76@2x.png</image152x152> 
+		<image180x180>/assets/icons/AppIcon180x180.png</image180x180> <image512x512>/assets/icons/iTunesArtwork.png</image512x512> 
+		<image1024x1024>/assets/icons/iTunesArtwork@2x.png</image1024x1024> </icon> -->
+
+
+	<android>
+		<colorDepth>16bit</colorDepth>
+		<manifestAdditions><![CDATA[
+			<manifest android:installLocation="auto">
+			    <!--See the Adobe AIR documentation for more information about setting Google Android permissions-->
+			    <!--Removing the permission android.permission.INTERNET will have the side effect
+		of preventing you from debugging your application on your device-->
+			    <uses-permission android:name="android.permission.INTERNET"/>
+			    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
+			    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE"/>-->
+			    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>-->
+			    <!--The DISABLE_KEYGUARD and WAKE_LOCK permissions should be toggled together
+		in order to access AIR's SystemIdleMode APIs-->
+			    <!--<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>-->
+			    <!--<uses-permission android:name="android.permission.WAKE_LOCK"/>-->
+			    <!--<uses-permission android:name="android.permission.CAMERA"/>-->
+			    <!--<uses-permission android:name="android.permission.RECORD_AUDIO"/>-->
+			    <!--The ACCESS_NETWORK_STATE and ACCESS_WIFI_STATE permissions should be toggled
+		together in order to use AIR's NetworkInfo APIs-->
+			    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
+			    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
+			</manifest>
+			
+		]]></manifestAdditions>
+	</android>
+	<iPhone>
+		<InfoAdditions>                     
+                 <![CDATA[
+                     <key>NSAppTransportSecurity</key>
+                           <dict>
+                           <key>NSAllowsArbitraryLoads</key><true/>
+                           </dict>
+				<key>UIDeviceFamily</key>
+			<array>
+     <string>3</string>
+</array>
+			<key>MinimumOSVersion</key>
+			<string>8.1</string>
+		]]></InfoAdditions>
+		<requestedDisplayResolution>high</requestedDisplayResolution>
+	</iPhone>
+</application>

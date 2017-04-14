@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" actionBarVisible="false" creationComplete="view1_creationCompleteHandler(event)" >
+    
+
+
+    <fx:Script>
+        <![CDATA[
+			import spark.effects.Fade;
+			
+			
+			/*override public function onRegister():void {
+				eventMap.mapListener(view.logo, MouseEvent.MOUSE_DOWN, mouseDown);
+				myTimer.addEventListener(TimerEvent.TIMER_COMPLETE, buttonPressedEnoughLong);
+				
+				var appXml:XML = NativeApplication.nativeApplication.applicationDescriptor;
+				var ns:Namespace = appXml.namespace();
+				var appVersion:String = appXml.ns::versionNumber[0];
+				
+				
+				view.versionNumber.text = "Version " + appVersion; 
+				view.image = (lds.serverApiUrl == prodServer) ? prodImage : devImage;
+				view.devservertext.visible =  view.devservertext.includeInLayout = (lds.serverApiUrl == prodServer) ? false : true;
+			}*/
+			
+			/*TransformGestureEvent.GESTURE_DIRECTIONAL_TAP - A 
+			new UIDeviceFamily gesture has been introduced to support directional tap from the Siri Remote.
+			This helps in navigating through a collection of items one-by-one. Direction of the tap can be 
+			judged by referring to the offsetX and offsetY values of the event object similar to a SwipeEvent.
+			TransformGestureEvent.GESTURE_SWIPE - Swipe Events are now supported on Apple TV similar to other
+			platforms. However, the values of stageX and stageY properties remain fixed as received from the 
+			native operating system, which is the center of the screen. AIR developers can read a new velocity 
+			property in Swipe Events to manage the fast movements based on the strength of swipe.
+			Mouse Events and Touch Events - Mouse Events on Apple TV are generated only on Siri Remote Click,
+			and are thus limited to CLICK, MOUSE_UP, and MOUSE_DOWN. Touch Events are generated on Siri Remote
+			Touch when Multitouch.inputMode is set to TOUCH_POINT.
+			Menu and Play/Pause Buttons - In addition to Siri Remote Touch surface support, we have also added 
+			support for the Menu and Play/Pause buttons. AIR developers can subscribe to KeyboardEvents.KEY_DOWN 
+			and KEY_UP events to listen to these button presses.
+			
+			keycode
+			keyname
+			Menu	0x01000012	KEYNAME_MENU="Menu"
+			Play/Pause	0x01000020	KEYNAME_PLAYPAUSE="PlayPause"
+*/
+            import mx.events.FlexEvent;
+            
+            import spark.events.IndexChangeEvent;
+		/*	protected function alertsBarList_changeHandler(event:TransformGestureEvent):void {            
+				navigator.pushView(AboutDetailsView, event.currentTarget.selectedItem);
+				
+			}*/
+            
+           /* protected function alertsBarList_changeHandler(event:IndexChangeEvent):void {            
+                navigator.pushView(AboutDetailsView, event.currentTarget.selectedItem);
+                
+            }*/
+            
+            protected function view1_creationCompleteHandler(event:FlexEvent):void {
+				addEventListener(TransformGestureEvent.GESTURE_SWIPE , swipeHandler );
+              //  var appXml:XML = NativeApplication.nativeApplication.applicationDescriptor;
+               // var ns:Namespace = appXml.namespace();
+                //var appVersion:String = appXml.ns::versionNumber[0];
+                //versionNumberLabel.text = "Version " + appVersion;                
+            }
+            
+			protected function swipeHandler(event:TransformGestureEvent):void
+			{
+				
+					switch(event.offsetX)
+					{
+						case 1:
+						{
+							
+							//if(list.selectedIndex < list.dataProvider.length){
+						//	list.selectedIndex ++;
+						
+							// swiped right
+							break;
+						}
+						case -1:
+						{
+							
+							//if(list.selectedIndex > 0){
+								//list.selectedIndex --;
+					//		}
+							// swiped left
+						//	this.navigator.pushView(GestureViewChangeView2);
+							break;
+						}
+					}
+					switch(event.offsetY)
+					{
+						case 1:
+						{
+							
+						//	list.focusEnabled = true;
+							// swiped down
+							break;
+						}
+						case -1:
+						{
+							// swiped up
+							break;
+						}
+					}
+				   
+			
+				
+
+			}
+			
+			private function listchanged(e:Event):void {
+				var f:Fade = new Fade(e.currentTarget);
+				f.duration = 1000;
+				f.play();
+			}
+			
+			
+		]]>
+    </fx:Script>
+    
+    
+    <s:VGroup height="100%" width="100%"    horizontalAlign="center">
+               
+        
+   <!--     <s:List   width="100%" height="50"  change="listchanged(event)" contentBackgroundColor="0xfffffff"  selectedIndex="0"  horizontalCenter="0"   id="list"   color="0x676767"     itemRenderer="renderers.AboutRenderer"    labelField="name"  >
+			<s:layout> 
+				<s:HorizontalLayout horizontalAlign="center" gap="40"/> 
+			</s:layout> 
+			
+			<s:dataProvider>
+                <s:ArrayCollection>
+                    <fx:Object title="Home" >		
+					</fx:Object>
+                    <fx:Object  title="Title">
+					</fx:Object>
+                    <fx:Object  title="More" >
+					</fx:Object>
+                    <fx:Object    title="More"></fx:Object>
+                </s:ArrayCollection>
+            </s:dataProvider>
+        </s:List>-->
+		
+		
+	
+		
+		
+		<s:Spacer height="30%">
+			
+		</s:Spacer>
+		
+		
+		<s:List width="100%" height="100%"       id="alertsBarList"   color="0x676767"   itemRenderer="renderers.TileRenderer" contentBackgroundColor="0xffffff"    >
+	
+			<s:layout> 
+				<s:TileLayout horizontalAlign="center" columnAlign="justifyUsingWidth"  paddingLeft="15" paddingRight="15"  rowHeight="150"  columnWidth="300"/> 
+			</s:layout> 
+			<s:dataProvider>
+				<s:ArrayCollection>
+					<fx:Object  image="/assets/churchAboutIcon.png" 
+								title="About Trinity" >
+						
+					</fx:Object>
+					<fx:Object image="/assets/pastor1.png"  
+							   title="Pastor Tim Mech"/>
+					<fx:Object image="/assets/pastor2.png"
+							   title="Pastor John Berg"/>
+							   email="berg@trinitysheboygan.org"
+					<fx:Object image="/assets/principal.png"  
+							   title="Principal Greg Becker"
+							   email="gregbecker@trinitysheboygan.org"/>
+				</s:ArrayCollection>
+			</s:dataProvider>
+		
+				
+				
+				
+		</s:List>
+
+ 
+    </s:VGroup>
+    
+</s:View>
